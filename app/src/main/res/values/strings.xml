@@ -1,0 +1,54 @@
+<resources>
+    <string name="app_name">AgendaEscolar</string>
+    <string name="action_settings">Configurações</string>
+
+    <!-- Form Field -->
+    <string name="foto_professor_desc">Foto do Professor</string>
+    <string name="nome">Nome</string>
+    <string name="fone">Telefone</string>
+    <string name="site">Site</string>
+    <string name="email">Email</string>
+    <string name="endereco">Endereço</string>
+
+    <!-- Button -->
+    <string name="btn_salvar_dados">Salvar</string>
+
+    <!-- Hints -->
+    <string name="hint_nome">Seu nome</string>
+    <string name="hint_fone">9999999999</string>
+    <string name="hint_site">www.exemplo.com</string>
+    <string name="hint_endereco">Rua 1</string>
+    <string name="hint_email">exemplo@com.br</string>
+
+    <!-- Titulo -->
+    <string name="titulo">Cadastro </string>
+
+    <string name="tituloProfessorLista">Professores</string>
+
+    <string name="novo">Novo</string>
+    <string name="mapa">Mapa</string>
+    <string name="mais_opcoes">Mais Opções</string>
+    <string name="enviarDados">Enviar Dados</string>
+    <string name="disciplinas">Receber Dados</string>
+    <string name="preferencias">Preferências</string>
+
+
+    <string name="ligar">Ligar</string>
+    <string name="enviarSMS">Enviar SMS</string>
+    <string name="verNoMapa">Ver no Mapa</string>
+    <string name="navegarSite">Navegar no Site</string>
+    <string name="enviarEmail">Enviar E-mail</string>
+    <string name="excluir">Excluir</string>
+    <string name="title_activity_professor_lista">Professores</string>
+    <string name="title_activity_disciplina">Disciplina</string>
+
+    <string name="planoDeAula">PLANO DE AULA</string>
+    <string name="disciplina">Disciplina</string>
+    <string name="cargaHoraria">Carga horária</string>
+    <string name="ementa">Ementa</string>
+    <string name="dadosDisciplina">DADOS DA DISCIPLINA</string>
+
+    <string name="tituloProfessorForm">Dados do Professor</string>
+
+
+</resources>
