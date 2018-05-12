@@ -65,7 +65,7 @@ public class ProfessorLista_Activity extends AppCompatActivity {
 
                 professorSelecionado = listaProfessores.get(i);
 
-                return true;
+                return false;
             }
         });
 
