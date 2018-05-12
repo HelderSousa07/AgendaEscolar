@@ -71,8 +71,11 @@ public class ProfessorDAO extends SQLiteOpenHelper {
 
     public void excluir(Professor professor){
 
-        ContentValues values = new ContentValues();
+        String[] args = {professor.getId().toString()};
 
+        getWritableDatabase().delete(TABELA,"id=?",args);
+
+        Log.i(TAG_LOGCAT, "Professor Excluído: "+professor.getNome());
 
     }
 

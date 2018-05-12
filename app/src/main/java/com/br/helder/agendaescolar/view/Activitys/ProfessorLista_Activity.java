@@ -1,8 +1,11 @@
 package com.br.helder.agendaescolar.view.Activitys;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,6 +25,7 @@ public class ProfessorLista_Activity extends AppCompatActivity {
 
     private ListView lvProfessores;
     private List<Professor> listaProfessores;
+    private Professor professorSelecionado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +34,13 @@ public class ProfessorLista_Activity extends AppCompatActivity {
 
         lvProfessores = findViewById(R.id.lvProfessores);
 
+        registerForContextMenu(lvProfessores);
+
         configurarClickDaListagem();
 
 
     }
+
 
     @Override
     protected void onResume() {
@@ -56,10 +63,9 @@ public class ProfessorLista_Activity extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                Toast.makeText(ProfessorLista_Activity.this, "Clique Longo em "+listaProfessores.get(i).getNome()
-                        ,Toast.LENGTH_SHORT).show();
+                professorSelecionado = listaProfessores.get(i);
 
-                return true;
+                return false;
             }
         });
 
@@ -91,6 +97,28 @@ public class ProfessorLista_Activity extends AppCompatActivity {
         lvProfessores.setAdapter(adapter);
     }
 
+    private void excluir(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Tem certeza que deseja excluir "+professorSelecionado.getNome()
+        +"?");
+        builder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                ProfessorDAO dao = new ProfessorDAO(ProfessorLista_Activity.this);
+                dao.excluir(professorSelecionado);
+                dao.close();
+                carregarLista();
+                professorSelecionado = null;
+            }
+        });
+
+        builder.setNegativeButton("Não",null);
+        AlertDialog dialog = builder.create();
+        dialog.setTitle("Excluir Professor");
+        dialog.show();
+
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -116,4 +144,34 @@ public class ProfessorLista_Activity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+
+        getMenuInflater().inflate(R.menu.professor_menu_contexto,menu);
+
+
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+
+        switch (item.getItemId()){
+
+            case R.id.itemMenuContextoExcluir:
+                //Toast.makeText(this,"Clique em Excluir",Toast.LENGTH_SHORT).show();
+                excluir();
+                break;
+                default:
+                    break;
+
+        }
+
+        return super.onContextItemSelected(item);
+    }
+
+
+
 }
+
